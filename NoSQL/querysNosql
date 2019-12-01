@@ -21,3 +21,17 @@ db.filme.aggregate([
     }
 ])
 
+
+4)*Relacao de quantidade de filmes por categoria*
+db.filme.aggregate([
+    {
+        "$group" : {_id:"$diretor_id", count:{$sum:1}}
+    }
+])
+
+5)*Relacao de quantidade de filmes por estudio
+db.filme.aggregate([
+    {
+        "$group" : {_id:"$estudio_id", count:{$sum:1}}
+    }
+])
