@@ -35,3 +35,55 @@ db.filme.aggregate([
         "$group" : {_id:"$estudio_id", count:{$sum:1}}
     }
 ])
+
+6)*Media de Notas por filmes*
+db.filme.aggregate([
+    {
+        $lookup: {
+            from : "avaliacoes",
+            localField: "avaliacoes",
+            foreignField: "_id",
+            as: "avaliacao_filme"
+        }
+    },
+    {
+        $project:{
+            nome: "$nome",
+            nota_media: { $avg: "$avaliacao_filme.nota"}
+        }
+    }
+])
+
+
+7)*Media de notas por categoria
+db.filme.aggregate([
+    {
+        $lookup: {
+                from : "categoria",
+                localField: "categoria_id._id1",
+                foreignField: "_id",
+                as: "tipo_filme"
+        }
+    },
+    {
+        $unwind: "$tipo_filme"
+    },
+    {
+        $lookup: {
+                from : "avaliacoes",
+                localField: "avaliacoes",
+                foreignField: "_id",
+                as: "avaliacao_filme"
+        }
+    },
+    {
+        $unwind: "$avaliacao_filme"
+    },
+    {
+        $group: {
+            _id: "$tipo_filme.descricao",
+            "Média" : { $avg: "$avaliacao_filme.nota"}
+        }
+    },
+   
+])
