@@ -1,0 +1,23 @@
+QUERYS
+
+1)*Buscar avaliações por maior nota.*
+db.avaliacoes.find().sort({nota:-1});
+
+
+2)*Relacao de filmes e quantidade de avaliacoes*
+db.filme.aggregate ([
+    {
+        $project: {
+            nome:1,
+            numeroAvaliacoes: { $cond: { if: {$isArray : "$avaliacoes" }, then : { $size: "$avaliacoes" }, else: "0" } } 
+        }
+    }
+])
+
+3)*Relacao de quantidade de filmes dirigidos por cada diretor*
+db.filme.aggregate([
+    {
+        "$group" : {_id:"$diretor_id", count:{$sum:1}}
+    }
+])
+
