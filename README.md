@@ -22,4 +22,4 @@ Basta ter Docker e docker-compose em sua máquina e executar o seguinte comando
 docker-compose up --build -d
 ```
 
-Depois desse passo o Mongo estará rodando na porta 27017 da sua máquina.
+Depois desse passo o MongoDB estará rodando na porta 27017 e o Mysql na 3606 da sua máquina.
