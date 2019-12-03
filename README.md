@@ -1,8 +1,8 @@
 # RateMe
-Implementação de um banco relacional e não relacional de um sistema de avaliação de filmes
+Implementação de um banco relacional e não relacional de um sistema de avaliação de filmes.
 
 
-## Especificação do minimundo:
+### Especificação do minimundo
 
 RateME é um sistema que deve permitir que usuários cadastrados possam obter informações sobre os filmes cadastrados, Filmes são cadastrados com um nome, uma data de lançamento, a quantidade de bileteria, sua categoria e informações sobre o estudio que o produziu e seu diretor, um filme só pode ser produzido por um estudio e por um diretor. 
 Um estúdio contem um nome e suas informações de localidade (cidade, estado, país). 
