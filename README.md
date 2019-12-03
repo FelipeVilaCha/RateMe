@@ -13,3 +13,13 @@ Um usuário deve poder dar notas aos filmes que desejar, deve ser apenas armazen
 ### ER
 
 ![Imagem da ER](er.png)
+
+### Rodando projeto
+
+Basta ter Docker e docker-compose em sua máquina e executar o seguinte comando
+
+```
+docker-compose up --build -d
+```
+
+Depois desse passo o Mongo estará rodando na porta 27017 da sua máquina.
