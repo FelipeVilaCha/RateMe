@@ -40,9 +40,9 @@ db.categoria.insertMany([
 ])
 
 db.filme.insertMany([
-    { _id: 1, nome: "Interstellar", bilheteria: 675000000, data_lancamento: Date('2014-10-26'), estudio_id: 3, diretor_id: 1, ator_id: {_id1: 1}, categoria_id:{_id1: 5}, avaliacoes: {_id1: 1, _id2: 2}},
-    { _id: 2, nome: "Clube da Luta", bilheteria: 101000000, data_lancamento: Date('1999-10-29'), estudio_id: 1, diretor_id: 2, ator_id: {_id1: 3}, categoria_id:{_id1: 6}, avaliacoes: {_id1: 1, _id2: 2}},
-    { _id: 3, nome: "A Lista de Schindler", bilheteria: 321000000, data_lancamento: Date('1993-12-15'), estudio_id: 2, diretor_id: 3, ator_id: {_id1: 2}, categoria_id:{_id1: 3}, avaliacoes: {_id1: 1, _id2: 2}}
+    { _id: 1, nome: "Interstellar", bilheteria: 675000000, data_lancamento: Date('2014-10-26'), estudio_id: 3, diretor_id: 1, atores: [1], categorias:[5], avaliacoes: [1,2]},
+    { _id: 2, nome: "Clube da Luta", bilheteria: 101000000, data_lancamento: Date('1999-10-29'), estudio_id: 1, diretor_id: 2, atores: [3], categorias:[6], avaliacoes: [1,2]},
+    { _id: 3, nome: "A Lista de Schindler", bilheteria: 321000000, data_lancamento: Date('1993-12-15'), estudio_id: 2, diretor_id: 3, atores:[2], categorias:[3], avaliacoes: [1,2]}
 ])
 
 db.avaliacoes.insertMany([
