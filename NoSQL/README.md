@@ -1,10 +1,12 @@
 # QUERIES
 
 1. *Buscar avaliações por maior nota.*
+```
 db.avaliacoes.find().sort({nota:-1});
-
+```
 
 2. *Relacao de filmes e quantidade de avaliacoes*
+```
 db.filme.aggregate ([
     {
         $project: {
@@ -13,30 +15,34 @@ db.filme.aggregate ([
         }
     }
 ])
-
+```
 3. *Relacao de quantidade de filmes dirigidos por cada diretor*
+```
 db.filme.aggregate([
     {
         "$group" : {_id:"$diretor_id", count:{$sum:1}}
     }
 ])
-
+```
 
 4. *Relacao de quantidade de filmes por categoria*
+```
 db.filme.aggregate([
     {
         "$group" : {_id:"$diretor_id", count:{$sum:1}}
     }
 ])
-
+```
 5. *Relacao de quantidade de filmes por estudio
+```
 db.filme.aggregate([
     {
         "$group" : {_id:"$estudio_id", count:{$sum:1}}
     }
 ])
-
+```
 6. *Media de Notas por filmes*
+```
 db.filme.aggregate([
     {
         $lookup: {
@@ -53,9 +59,9 @@ db.filme.aggregate([
         }
     }
 ])
-
-
+```
 7. *Media de notas por categoria
+```
 db.filme.aggregate([
     {
         $lookup: {
@@ -87,3 +93,4 @@ db.filme.aggregate([
     },
    
 ])
+```
