@@ -36,6 +36,9 @@ docker-compose up --build -d
 ```
 
 Depois desse passo o MongoDB estará rodando na porta 27017 e o Mysql na 3606 da sua máquina.
+#### Credenciais de acesso aos bancos
+
+Você pode pegar essa informação no docker-compose.yml na pasta atual na raiz do projeto.
 
 #### Conectando no MongoDB e executando as consultas
 
