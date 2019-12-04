@@ -33,3 +33,7 @@ docker-compose up --build -d
 ```
 
 Depois desse passo o MongoDB estará rodando na porta 27017 e o Mysql na 3606 da sua máquina.
+
+#### Executando as consultas
+
+Você pode conectar ao mongo com qualquer client de preferência na porta 27017. [Aqui estão as 10 queries](./NoSQL/README.md)
