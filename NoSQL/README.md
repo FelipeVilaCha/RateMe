@@ -18,16 +18,27 @@ db.filme.aggregate ([
 ```
 3. *Relacao de quantidade de filmes dirigidos por cada diretor*
 ```
-db.filme.aggregate([
+db.diretores.aggregate([
+    {
+        $lookup: {
+                from : "filme",
+                localField: "_id",
+                foreignField: "diretor_id",
+                as: "filme_diretor"
+        }
+    },
+    {
+        $unwind: "$filme_diretor"
+    },
     {
         "$group" : {_id:"$nome", filmes:{$sum:1}}
     }
 ])
 ```
 
-4. *Relacao de quantidade de filmes por categoria*
+4. *Relacao de quantidade de estudios por país*
 ```
-db.filme.aggregate([
+db.estudios.aggregate([
     {
         $lookup: {
                 from : "localidade",
