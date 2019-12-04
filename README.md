@@ -36,4 +36,47 @@ Depois desse passo o MongoDB estará rodando na porta 27017 e o Mysql na 3606 da
 
 #### Executando as consultas
 
-Você pode conectar ao mongo com qualquer client de preferência na porta 27017. [Aqui estão as 10 queries](./NoSQL/README.md)
+[Aqui estão as 10 queries](./NoSQL/README.md) para executar no MongoDB.
+
+Alternativas:
+
+1. Você pode conectar ao mongo com qualquer client de preferência na porta 27017. 
+
+Ex: [Robo3T](https://robomongo.org/download)
+
+2. Conectar direto no bash do terminal que roda o mongo.
+
+    1. Digite o comando para abrir o shell.
+    ```
+    docker exec -ti <ID DO CONTAINER> mongo
+    ```
+    2. Daí use a documentação para fazer queries.
+    
+    [Documentação do mongo para consultas](https://docs.mongodb.com/manual/crud/#read-operations)
+
+#### Conectando no MYSQL
+
+Alternativas:
+
+1. Usar um client e conectar na porta padrão (3306).
+
+Ex.: [MYSQL workbench](https://www.mysql.com/products/workbench/) que fornece uma interface amigável para gerenciar o banco de dados.
+
+2. Conectar direto no terminal do container mysql
+    1. Digite o comando para abrir o shell. Se falhar, troque "/bin/bash" por "bash".
+    ```
+    docker exec -ti <ID DO CONTAINER> /bin/bash
+    ```
+    2. Inicie o mysql com o seguinte comando
+    ```
+    mysql -uroot -p
+    ```
+    3. Use o banco de dados em questão
+    ```
+    use RATEME;
+    ```
+    4. Teste para ver se as tabelas vão aparecer
+    ```
+    show tables;
+    ```
+    5. A partir daí pode executar qualquer comando
