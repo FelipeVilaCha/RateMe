@@ -12,13 +12,15 @@ services:
       - 27017:27017
     volumes:
       - ./NoSQL/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-  # mysql:
-  #   image: mysql
-  #   command: --default-authentication-plugin=mysql_native_password
-  #   ports:
-  #   - "3306:3306"  
-  #   environment:
-  #     - MYSQL_ROOT_PASSWORD=uff2019
-  #     - MYSQL_DATABASE=rateme
-  #   volumes:
-  #     - /SQL/mysql-init.sql:/docker-entrypoint-initdb.d/:ro
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - ./SQL:/docker-entrypoint-initdb.d
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'RATEME'
+      MYSQL_USER: 'bdnc'
+      MYSQL_PASSWORD: 'uff2019'
+      MYSQL_ROOT_PASSWORD: 'uff2019'
+    ports:
+      - '3306:3306'
