@@ -15,42 +15,19 @@ db.filme.aggregate ([
         }
     }
 ])
-<<<<<<< HEAD:NoSQL/README.md
 ```
 3. *Relacao de quantidade de filmes dirigidos por cada diretor*
 ```
 db.filme.aggregate([
-=======
-
-3)*Relacao de quantidade de filmes dirigidos por cada diretor*
-db.diretores.aggregate([
-    {
-        $lookup: {
-                from : "filme",
-                localField: "_id",
-                foreignField: "diretor_id",
-                as: "filme_diretor"
-        }
-    },
-    {
-        $unwind: "$filme_diretor"
-    },
->>>>>>> master:NoSQL/querysNosql
     {
         "$group" : {_id:"$nome", filmes:{$sum:1}}
     }
 ])
 ```
 
-<<<<<<< HEAD:NoSQL/README.md
 4. *Relacao de quantidade de filmes por categoria*
 ```
 db.filme.aggregate([
-=======
-
-4)*Relacao de quantidade de estudios por país*
-db.estudios.aggregate([
->>>>>>> master:NoSQL/querysNosql
     {
         $lookup: {
                 from : "localidade",
