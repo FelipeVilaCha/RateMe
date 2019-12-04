@@ -15,21 +15,55 @@ db.filme.aggregate ([
         }
     }
 ])
+<<<<<<< HEAD:NoSQL/README.md
 ```
 3. *Relacao de quantidade de filmes dirigidos por cada diretor*
 ```
 db.filme.aggregate([
+=======
+
+3)*Relacao de quantidade de filmes dirigidos por cada diretor*
+db.diretores.aggregate([
     {
-        "$group" : {_id:"$diretor_id", count:{$sum:1}}
+        $lookup: {
+                from : "filme",
+                localField: "_id",
+                foreignField: "diretor_id",
+                as: "filme_diretor"
+        }
+    },
+    {
+        $unwind: "$filme_diretor"
+    },
+>>>>>>> master:NoSQL/querysNosql
+    {
+        "$group" : {_id:"$nome", filmes:{$sum:1}}
     }
 ])
 ```
 
+<<<<<<< HEAD:NoSQL/README.md
 4. *Relacao de quantidade de filmes por categoria*
 ```
 db.filme.aggregate([
+=======
+
+4)*Relacao de quantidade de estudios por país*
+db.estudios.aggregate([
+>>>>>>> master:NoSQL/querysNosql
     {
-        "$group" : {_id:"$diretor_id", count:{$sum:1}}
+        $lookup: {
+                from : "localidade",
+                localField: "localidade_id",
+                foreignField: "_id",
+                as: "tipo_local"
+        }
+    },
+    {
+        $unwind: "$tipo_local"
+    },
+    {
+        "$group" : {_id:"$tipo_local.pais", estudios:{$sum:1}}
     }
 ])
 ```
@@ -37,7 +71,18 @@ db.filme.aggregate([
 ```
 db.filme.aggregate([
     {
-        "$group" : {_id:"$estudio_id", count:{$sum:1}}
+        $lookup: {
+            from : "estudios",
+            localField: "estudio_id",
+            foreignField: "_id",
+            as: "estudio_filme"
+        }
+    },
+    {
+        $unwind: "$estudio_filme"
+    },
+    {
+        "$group" : {_id:"$estudio_filme.nome", filmes:{$sum:1}}
     }
 ])
 ```
@@ -55,18 +100,22 @@ db.filme.aggregate([
     {
         $project:{
             nome: "$nome",
-            nota_media: { $avg: "$avaliacao_filme.nota"}
+            Média: { $avg: "$avaliacao_filme.nota"}
         }
     }
 ])
 ```
-7. *Media de notas por categoria
+
+7. *Media de notas por categoria*
 ```
 db.filme.aggregate([
     {
+        $unwind: "$categorias"
+    },
+    {
         $lookup: {
                 from : "categoria",
-                localField: "categoria_id._id1",
+                localField: "categorias",
                 foreignField: "_id",
                 as: "tipo_filme"
         }
@@ -92,5 +141,71 @@ db.filme.aggregate([
         }
     },
    
+])
+```
+8. *Usuarios que realizaram mais avaliacoes*
+```
+db.avaliacoes.aggregate([
+    {
+        $lookup: {
+                from : "usuarios",
+                localField: "user_id",
+                foreignField: "_id",
+                as: "user_avaliacao"
+        }
+    },
+    {
+        $unwind: "$user_avaliacao"
+    },
+    {
+        "$group" : {_id:"$user_avaliacao.nome", avaliacoes:{$sum:1}}
+    },   
+])
+```
+9. *Top 3 diretores de maior bilheteria no cinema*
+```
+db.diretores.aggregate([
+    {
+        $lookup: {
+                from : "filme",
+                localField: "_id",
+                foreignField: "diretor_id",
+                as: "filme_diretor"
+        }
+    },
+    {
+        $unwind: "$filme_diretor"
+    },
+    {
+        "$group" : {_id:"$nome", valor:{$sum:"$filme_diretor.bilheteria"}}
+    },
+    {
+        $sort: {valor: -1}
+    },
+    {
+        $limit : 3
+    }
+])
+```
+10. *Quantidade de filmes em que um ator atuou*
+```
+db.filme.aggregate([
+    {
+        $unwind : "$atores"
+    },
+    {
+        $lookup: {
+                from : "ator",
+                localField: "atores",
+                foreignField: "_id",
+                as: "filme_ator"
+        }
+    },
+    {
+        $unwind: "$filme_ator"
+    },
+    {
+        "$group" : {_id:"$filme_ator.nome", filmes:{$sum:1}}
+    }
 ])
 ```
