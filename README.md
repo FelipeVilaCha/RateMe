@@ -23,8 +23,6 @@ Logo depois dessa construção, escolhemos o MongoDB por se tratar de um banco m
 
 Por fim, por se tratar de uma linguagem nova para nós, sentimos um pouco de dificuldade na sintaxe e na construção do relacionamento entre os diferentes documentos, mas com a continuidade no desenvolvimento, esses entraves foram sendo solucionados.
 
-Para realizar a construção dos documentos no MongoDB basta inserir os comandos presentes no documento acima, na seção do NOSQL (create_docs_rateme.js). E dessa mesma forma são realizadas as querys, contidas na seção QUERYS no documento (x).
-
 ---
 
 ### Rodando projeto
