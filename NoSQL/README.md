@@ -1,10 +1,12 @@
-QUERYS
+# QUERIES
 
-1)*Buscar avaliações por maior nota.*
+1. *Buscar avaliações por maior nota.*
+```
 db.avaliacoes.find().sort({nota:-1});
+```
 
-
-2)*Relacao de filmes e quantidade de avaliacoes*
+2. *Relacao de filmes e quantidade de avaliacoes*
+```
 db.filme.aggregate ([
     {
         $project: {
@@ -13,28 +15,19 @@ db.filme.aggregate ([
         }
     }
 ])
-
-3)*Relacao de quantidade de filmes dirigidos por cada diretor*
-db.diretores.aggregate([
-    {
-        $lookup: {
-                from : "filme",
-                localField: "_id",
-                foreignField: "diretor_id",
-                as: "filme_diretor"
-        }
-    },
-    {
-        $unwind: "$filme_diretor"
-    },
+```
+3. *Relacao de quantidade de filmes dirigidos por cada diretor*
+```
+db.filme.aggregate([
     {
         "$group" : {_id:"$nome", filmes:{$sum:1}}
     }
 ])
+```
 
-
-4)*Relacao de quantidade de estudios por país*
-db.estudios.aggregate([
+4. *Relacao de quantidade de filmes por categoria*
+```
+db.filme.aggregate([
     {
         $lookup: {
                 from : "localidade",
@@ -50,8 +43,9 @@ db.estudios.aggregate([
         "$group" : {_id:"$tipo_local.pais", estudios:{$sum:1}}
     }
 ])
-
-5)*Relacao de quantidade de filmes por estudio
+```
+5. *Relacao de quantidade de filmes por estudio
+```
 db.filme.aggregate([
     {
         $lookup: {
@@ -68,8 +62,9 @@ db.filme.aggregate([
         "$group" : {_id:"$estudio_filme.nome", filmes:{$sum:1}}
     }
 ])
-
-6)*Media de Notas por filmes*
+```
+6. *Media de Notas por filmes*
+```
 db.filme.aggregate([
     {
         $lookup: {
@@ -86,9 +81,10 @@ db.filme.aggregate([
         }
     }
 ])
+```
 
-
-7)*Media de notas de filmes por categoria
+7. *Media de notas por categoria*
+```
 db.filme.aggregate([
     {
         $unwind: "$categorias"
@@ -123,8 +119,9 @@ db.filme.aggregate([
     },
    
 ])
-
-8)*Usuarios que realizaram mais avaliacoes
+```
+8. *Usuarios que realizaram mais avaliacoes*
+```
 db.avaliacoes.aggregate([
     {
         $lookup: {
@@ -141,8 +138,9 @@ db.avaliacoes.aggregate([
         "$group" : {_id:"$user_avaliacao.nome", avaliacoes:{$sum:1}}
     },   
 ])
-
-8)*Top 3 diretores de maior bilheteria no cinema
+```
+9. *Top 3 diretores de maior bilheteria no cinema*
+```
 db.diretores.aggregate([
     {
         $lookup: {
@@ -165,8 +163,9 @@ db.diretores.aggregate([
         $limit : 3
     }
 ])
-
-9)*Quantidade de filmes em que um ator atuou
+```
+10. *Quantidade de filmes em que um ator atuou*
+```
 db.filme.aggregate([
     {
         $unwind : "$atores"
@@ -186,3 +185,4 @@ db.filme.aggregate([
         "$group" : {_id:"$filme_ator.nome", filmes:{$sum:1}}
     }
 ])
+```
