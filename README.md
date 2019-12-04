@@ -14,6 +14,16 @@ Um usuário deve poder dar notas aos filmes que desejar, deve ser apenas armazen
 
 ![Imagem da ER](er.png)
 
+### RELATORIO
+
+Após identificar o tema do trabalho, que é o sistema de avaliação de filmes, começamos a desenvolver o banco relacional, o qual já conhecemos, até mesmo para ter uma base do que precisaria ser replicado para um banco não relacional.
+
+Logo depois dessa construção, escolhemos o MongoDB por se tratar de um banco muito em evidência hoje no mercado e que nenhum de nós havíamos mexido anteriormente, então se tratava de um mundo novo, que sempre é bom aprender. Apesar de pensar em usar o HBase, no qual um integrante já tinha uma familiaridade, a configuração do HBase requer um sistema muito bem definido e integrado para começar o desenvolvimento. Partimos da simplicidade.
+
+Por fim, por se tratar de uma linguagem nova para nós, sentimos um pouco de dificuldade na sintaxe e na construção do relacionamento entre os diferentes documentos, mas com a continuidade no desenvolvimento, esses entraves foram sendo solucionados.
+
+Para realizar a construção dos documentos no MongoDB basta inserir os comandos presentes no documento acima, na seção do NOSQL (create_docs_rateme.js). E dessa mesma forma são realizadas as querys, contidas na seção QUERYS no documento (x).
+
 ### Rodando projeto
 
 Basta ter Docker e docker-compose em sua máquina e executar o seguinte comando
